@@ -1,2 +1,2 @@
-# adith005.github.io
+# adithabhilash.github.io
 Adith Abhilash Personal Portfolio 
