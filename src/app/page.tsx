@@ -18,8 +18,6 @@ import {
   fetchPublicationsFromCSV,
 } from '@/lib/csvParser';
 
-export const revalidate = 60; // Revalidate CSV data every 60 seconds
-
 export default async function Home() {
   const [projectsData, experienceData, educationData, publicationsData] = await Promise.all([
     fetchProjectsFromCSV(),
