@@ -162,7 +162,7 @@ export default function Hero() {
             {/* Highlights Stats Row */}
             <div className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-2xl">
               <div>
-                <div className="text-lg sm:text-xl font-bold text-white font-mono leading-tight">Software Developer</div>
+                <div className="text-lg sm:text-xl font-bold text-[#C72C41] font-mono leading-tight">Software Developer</div>
                 <div className="text-xs text-zinc-500 mt-1">Full Stack & Web Applications</div>
               </div>
               <div>
@@ -205,9 +205,8 @@ export default function Hero() {
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       priority={idx === 0}
-                      className={`object-cover object-center transition-all duration-300 filter brightness-95 contrast-105 ${
-                        activeImageIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                      }`}
+                      className={`object-cover object-center transition-all duration-300 filter brightness-95 contrast-105 ${activeImageIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                        }`}
                     />
                   ))}
 
