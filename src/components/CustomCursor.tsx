@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 export default function CustomCursor() {
@@ -9,18 +9,19 @@ export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const mousePosRef = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
 
-    setIsVisible(true);
-
     let animationFrameId: number;
 
     const handleMouseMove = (e: MouseEvent) => {
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
       setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
 
       const target = e.target as HTMLElement | null;
       if (
@@ -54,8 +55,8 @@ export default function CustomCursor() {
     let currentY = -100;
 
     const updateTrailing = () => {
-      currentX += (position.x - currentX) * 0.18;
-      currentY += (position.y - currentY) * 0.18;
+      currentX += (mousePosRef.current.x - currentX) * 0.18;
+      currentY += (mousePosRef.current.y - currentY) * 0.18;
       setTrailingPos({ x: currentX, y: currentY });
       animationFrameId = requestAnimationFrame(updateTrailing);
     };
@@ -70,7 +71,7 @@ export default function CustomCursor() {
       document.removeEventListener('mouseenter', handleMouseEnter);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [position.x, position.y]);
+  }, []);
 
   if (!isVisible) return null;
 

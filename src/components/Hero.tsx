@@ -1,20 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { Mail, ArrowDown, Cpu, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Mail, Download, Sparkles, Image as ImageIcon } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '@/components/Icons';
 
 const portfolioImages = [
   {
     src: '/data/Gemini_Generated_Image_hb7o0ahb7o0ahb7o.png',
     title: 'Primary AI & Data Science Engineer',
-    subtitle: 'Gemini Featured Persona',
+    subtitle: 'AI/ML engineering & Data Analysis/Science',
   },
   {
     src: '/data/Gemini_Generated_Image_2ycjqp2ycjqp2ycj.png',
     title: 'Autonomous Swarm & Vision Lead',
-    subtitle: 'Jetson Nano & Pixhawk Specialist',
+    subtitle: 'Robotics & Hardware Specialist',
   },
   {
     src: '/data/Gemini_Generated_Image_yh3xjyh3xjyh3xjy.png',
@@ -36,7 +37,6 @@ export default function Hero() {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const relX = e.clientX - rect.left;
-    const relY = e.clientY - rect.top;
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -93,7 +93,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C72C41] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C72C41]" />
               </span>
-              <span>Available for Software development, AI, Data Science, and Robotics Roles</span>
+              <span>Available for Software Development, AI, Data Science, and Robotics Roles</span>
             </div>
 
             {/* Main Headline & Role */}
@@ -113,13 +113,17 @@ export default function Hero() {
 
             {/* Action Buttons */}
             <div className="pt-4 flex flex-wrap gap-3 sm:gap-4 items-center">
-              {/* View Projects Button */}
+              {/* Resume Download Button */}
               <a
-                href="#projects"
+                href="/data/Adith_Abhilash_ATS_Resume.pdf"
+                download="Adith_Abhilash_ATS_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full bg-[#9B1B30] text-white font-extrabold text-sm hover:bg-[#C72C41] transition-all duration-300 shadow-lg shadow-[#9B1B30]/30 flex items-center gap-2 group"
+                aria-label="Download Resume"
               >
-                <span>View Projects</span>
-                <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+                <span>Resume</span>
+                <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
               </a>
 
               {/* GitHub Link */}
@@ -156,18 +160,22 @@ export default function Hero() {
             </div>
 
             {/* Highlights Stats Row */}
-            <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg">
+            <div className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-2xl">
               <div>
-                <div className="text-xl sm:text-2xl font-bold text-white font-mono">RAG & LLM</div>
-                <div className="text-xs text-zinc-500">Context Optimization</div>
+                <div className="text-lg sm:text-xl font-bold text-white font-mono leading-tight">Software Developer</div>
+                <div className="text-xs text-zinc-500 mt-1">Full Stack & Web Applications</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-bold text-[#C72C41] font-mono">Edge Vision</div>
-                <div className="text-xs text-zinc-500">Jetson Nano & Pixhawk</div>
+                <div className="text-lg sm:text-xl font-bold text-white font-mono leading-tight">RAG & LLM</div>
+                <div className="text-xs text-zinc-500 mt-1">Context Optimization and Citation</div>
               </div>
               <div>
-                <div className="text-xl sm:text-2xl font-bold text-white font-mono">IEEE 2025</div>
-                <div className="text-xs text-zinc-500">Scopus Paper Author</div>
+                <div className="text-lg sm:text-xl font-bold text-[#C72C41] font-mono leading-tight">Edge Vision</div>
+                <div className="text-xs text-zinc-500 mt-1">Jetson Nano & Pixhawk</div>
+              </div>
+              <div>
+                <div className="text-lg sm:text-xl font-bold text-white font-mono leading-tight">IEEE 2025</div>
+                <div className="text-xs text-zinc-500 mt-1">Scopus Paper Author</div>
               </div>
             </div>
           </motion.div>
@@ -190,12 +198,16 @@ export default function Hero() {
                 {/* Image Stack Frame - Instant Opacity Layering */}
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-black">
                   {portfolioImages.map((img, idx) => (
-                    <img
+                    <Image
                       key={img.src}
                       src={img.src}
                       alt={img.title}
-                      className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-300 filter brightness-95 contrast-105 ${activeImageIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                        }`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      priority={idx === 0}
+                      className={`object-cover object-center transition-all duration-300 filter brightness-95 contrast-105 ${
+                        activeImageIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                      }`}
                     />
                   ))}
 

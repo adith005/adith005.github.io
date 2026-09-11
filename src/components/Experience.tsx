@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, Building2, ChevronRight, FileSpreadsheet } from 'lucide-react';
+import { Calendar, Building2, ChevronRight, FileSpreadsheet } from 'lucide-react';
 import { Experience } from '@/types';
 import { fetchExperienceFromCSV } from '@/lib/csvParser';
 
